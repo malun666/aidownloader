@@ -81,7 +81,7 @@ const c = new Crawler({
 EventBus.on('mongodbConn', () => {
   try {
     let arr = [];
-    for (let i = 0, k = 628110; i < 5; i++) {
+    for (let i = 0, k = 628100; i < 500; i++) {
       arr.push(`https://news.cnblogs.com/n/${k - i}`);
     }
     c.queue(arr);
