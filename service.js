@@ -2,7 +2,8 @@ const EventBus = require('./EventBus');
 let mongoose = require('mongoose');
 let { Schema } = mongoose;
 let Db = {};
-mongoose.connect('mongodb://admin:aicoder_com@localhost:27021/kk');
+// mongoose.connect('mongodb://admin:aicoder_com@localhost:27021/kk');
+mongoose.connect('mongodb://admin:aicoder_com@pre.hamkd.com:27021/kk');
 let con = mongoose.connection;
 con.on('error', console.error.bind(console, '连接数据库失败'));
 con.once('open', () => {

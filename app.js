@@ -9,7 +9,7 @@ const urlencode = require('urlencode');
 let newsCount = 0;
 const c = new Crawler({
   maxConnections: 1,
-  rateLimit: 1500,
+  rateLimit: 2500,
   callback: function(error, res, done) {
     if (error) {
       console.log(error);
@@ -42,7 +42,8 @@ const c = new Crawler({
               // fs.createWriteStream(path.join(__dirname, '/imgs/', name))
               fs.createWriteStream(
                 path.join(
-                  '/Users/flydragon/Desktop/work/gitdata/aicoder_egg/app/pub/public/bootimgs',
+                  // '/Users/flydragon/Desktop/work/gitdata/aicoder_egg/app/pub/public/bootimgs',
+                  '/home/github/aicoder_egg/app/pub/public/bootimgs',
                   name
                 )
               )
@@ -80,7 +81,7 @@ const c = new Crawler({
 EventBus.on('mongodbConn', () => {
   try {
     let arr = [];
-    for (let i = 0, k = 628010; i < 100; i++) {
+    for (let i = 0, k = 628110; i < 5; i++) {
       arr.push(`https://news.cnblogs.com/n/${k - i}`);
     }
     c.queue(arr);
