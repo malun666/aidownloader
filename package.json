@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "crawler": "^1.2.1",
+    "request": "^2.88.0"
+  }
+}
