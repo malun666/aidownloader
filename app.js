@@ -9,7 +9,7 @@ const urlencode = require('urlencode');
 let newsCount = 0;
 const c = new Crawler({
   maxConnections: 1,
-  rateLimit: 2500,
+  rateLimit: 5500,
   callback: function(error, res, done) {
     if (error) {
       console.log(error);
@@ -29,7 +29,7 @@ const c = new Crawler({
         url = url.replace(name, encodeURI(name));
         try {
           if (/^\/\//i.test(url)) {
-            // console.log('`http:${url}` :', `http:${url}`);
+            console.log(`http:${url}`);
             let urlName = `http:${url}`;
             if (
               !/(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?/i.test(
@@ -42,8 +42,8 @@ const c = new Crawler({
               // fs.createWriteStream(path.join(__dirname, '/imgs/', name))
               fs.createWriteStream(
                 path.join(
-                  // '/Users/flydragon/Desktop/work/gitdata/aicoder_egg/app/pub/public/bootimgs',
-                  '/home/github/aicoder_egg/app/pub/public/bootimgs',
+                  '/Users/flydragon/Desktop/work/gitdata/aicoder_egg/app/pub/public/bootimgs',
+                  // '/home/github/aicoder_egg/app/pub/public/bootimgs',
                   name
                 )
               )
@@ -81,8 +81,16 @@ const c = new Crawler({
 EventBus.on('mongodbConn', () => {
   try {
     let arr = [];
-    for (let i = 0, k = 628100; i < 500; i++) {
-      arr.push(`https://news.cnblogs.com/n/${k - i}`);
+    for (let i = 0, k = 611629; i < 100; i++) {
+      arr.push({
+        uri: `https://news.cnblogs.com/n/${k - i}`,
+        userAgent:
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Safari/605.1.15',
+        headers: {
+          Cookie: "__utma=66375729.263404499.1558367666.1562858270.1562895161.3; __utmb=66375729.3.10.1562895162; __utmc=66375729; __utmt=1; __utmz=66375729.1562895162.3.2.utmcsr=home.cnblogs.com|utmccn=(referral)|utmcmd=referral|utmcct=/news/page/16/; _ga=GA1.2.263404499.1558367666; _gid=GA1.2.564746900.1562850097; .CNBlogsCookie=3DBB8CCC60FE41E401E12A44DEF4F2F454990DF8EE0A6B7819E98EAEC59B58033070B7B3B85FB8155785C8EDC71DA270AC6587DA118CC7CC6CBD541C9FFDD96D13CA0B1C9C3B1B88435B365D057F8C1D33A1F154C48B8E10EA85D5E9E6F68165A129450C; .Cnblogs.AspNetCore.Cookies=CfDJ8D8Q4oM3DPZMgpKI1MnYlrm442pni5jKePTMiMEBb_IUgh5REicbgXROJSklhyQQsRby-HZCUmWp2iM3TqOP6daRWwJV38tKaBEO3k6jvLJpWTgsX8sgp1BaVsxyI8oEvSt_3iNG51MnzsVzq-5UR5x1zT6RuqNeIYHlI3bNkpZqtolGvk1BovNv8oYOu2VlVthpvLbxgEJhUW_MjwvGMeB2J9URAkXwUiA9u3L6T6FO58cyADHTuebwN4LpJG0WeWqRqqY7PYaW-8OtQnfHs0IiOvHrMvpSYLj1bf58MI6DYL_KJUNWAJPfTNJWhyqMKWFMNI39T2jVMZSj-HrcVnD_o_hsHf24tYUW4o_SqbJNKkXUH1Jn7h-ZayovPrQRgnAxZgPcm6fC2BDXA40IZ4BTJf2evrFJod9awI7WNB3Fv5p_sy2hCSPjtxj8dzRRI_kKy2EMzRWefkbtpv54IEs; __gads=ID=9f47d14844d62aaa:T=1558367666:RT=1562850003:S=ALNI_MYejz0YlevO2F72J275p5H66jdTVA"
+        },
+        referer: 'https://home.cnblogs.com/news/page/16/'
+      });
     }
     c.queue(arr);
   } catch (e) {
