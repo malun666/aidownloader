@@ -18,7 +18,7 @@ EventBus.on('mongodbConn', async () => {
   try {
     let pushBaidu = async () => {
       let idArrs = await Db.Article.find({})
-      .sort({"_id": -1})
+      .sort({"SubOn": 1})
       .skip(20*(pageIndex - 1))
       .limit(20)
       .select('_id');
