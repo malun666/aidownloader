@@ -17,7 +17,7 @@ let pageIndex = 1;
 EventBus.on('mongodbConn', async () => {
   try {
     let pushBaidu = async () => {
-      let idArrs = await Db.Article.find({})
+      let idArrs = await Db.Art.find({})
       .sort({"SubOn": 1})
       .skip(20*(pageIndex - 1))
       .limit(20)
@@ -44,12 +44,13 @@ EventBus.on('mongodbConn', async () => {
         console.error(`problem with request: ${e.message}`, pageIndex++);
         pushBaidu();
       });
-
+      
       // write data to request body
       idArrs.forEach(item => {
-        req.write(`https://www.aicoder.com/bnews/${item._id}/d.html
+        // req.write(`https://www.aicoder.com/bnews/${item._id}/d.html
+        req.write(`https://www.aicoder.com/news/${item._id}/news.html
         `);
-        console.log(`push: ===>  https://www.aicoder.com/bnews/${item._id}/d.html`);
+        console.log(`push: ===>  https://www.aicoder.com/news/${item._id}/news.html`);
       })
       req.end();
     };

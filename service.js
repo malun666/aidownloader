@@ -22,7 +22,23 @@ con.once('open', () => {
     UserId: Schema.Types.ObjectId,
     Comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
   });
+  const ArtSchema = new Schema({
+    SubName: { required: true, type: String, trim: true },
+    SubOn: { type: Date, default: Date.now() },
+    Del: { type: Boolean, default: false },
+    IsHot: { type: Boolean, default: false },
+    Remark: { type: String, trim: true, default: '' },
+    Content: { type: String, trim: false, default: '' },
+    Title: { type: String, trim: true, default: '' },
+    Tages: { type: String, trim: true, default: '' },
+    Favs: { type: Number, default: 0 },
+    Vote: { type: Number, default: 0 },
+    Opend: { type: Number, default: 0 },
+    UserId: Schema.Types.ObjectId,
+    Comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+  });
   Db.Article = mongoose.model('ArticleBoot', ArticleSchema);
+  Db.Art = mongoose.model('Article', ArtSchema);
   EventBus.emit('mongodbConn')
 });
 module.exports = Db;
