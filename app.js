@@ -93,7 +93,7 @@ EventBus.on('mongodbConn', () => {
       });
       if(i%20 === 0) {
         let fileName = path.join(__dirname, 'number.txt');
-        fs.writeFileSync(fileName, i + '', {
+        fs.writeFile(fileName, i + '', {
           encoding: 'utf8',
           flag: 'w'
         });
