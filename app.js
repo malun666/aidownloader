@@ -81,7 +81,7 @@ const c = new Crawler({
 EventBus.on('mongodbConn', () => {
   try {
     let arr = [];
-    for (let i = 0, k = 611629; i < 100; i++) {
+    for (let i = 0, k = 600629; i < 100; i++) {
       arr.push({
         uri: `https://news.cnblogs.com/n/${k - i}`,
         userAgent:
@@ -91,6 +91,13 @@ EventBus.on('mongodbConn', () => {
         },
         referer: 'https://home.cnblogs.com/news/page/16/'
       });
+      if(i%20 === 0) {
+        let fileName = path.join(__dirname, 'number.txt');
+        fs.writeFileSync(fileName, i + '', {
+          encoding: 'utf8',
+          flag: 'w'
+        });
+      }
     }
     c.queue(arr);
   } catch (e) {
